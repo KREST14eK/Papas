@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSP</title>
+
+```
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+<!-- ЛОГО -->
+
+<div class="logo">MSP</div>
+
+<!-- ВЕРХНЯЯ ПАНЕЛЬ -->
+
+<div class="topbar">
+    <div class="burger" onclick="toggleMenu()">☰</div>
+    <div class="profile" onclick="toggleProfile()">👤</div>
+</div>
+
+<!-- ЛЕВОЕ МЕНЮ -->
+
+<div id="menu" class="menu">
+    <a href="#">Курсы</a>
+    <a href="#">Стримы</a>
+</div>
+
+<!-- ПРАВОЕ МЕНЮ -->
+
+<div id="profileMenu" class="profile-menu">
+    <a href="#">Настройки</a>
+    <a href="#">Корзина</a>
+    <a href="#">Мои курсы</a>
+    <a href="#" class="logout">Выход</a>
+</div>
+
+<!-- КОНТЕНТ -->
+
+<div class="content">
+    <h1>Добро пожаловать в MSP</h1>
+    <p>Тут будут курсы</p>
+
+```
+<button onclick="openRegister()">Регистрация</button>
+<button onclick="openLogin()">Войти</button>
+```
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
