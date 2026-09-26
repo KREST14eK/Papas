@@ -155,6 +155,16 @@ body.sidebar-collapsed .sidebar-rule { margin-right: 3px; margin-left: 3px; }
 .chip-blue { right: 8%; bottom: 31%; background: #4190ad; transform: scale(.8); }
 .table-mark { position: absolute; right: 13%; top: 19%; color: #e1ebdc; font-size: 8px; font-weight: 700; letter-spacing: 2px; }
 .section-block { margin-top: 29px; }
+.latest-post-block { margin-top: 24px; }
+.latest-post-block .section-heading { align-items: center; margin-bottom: 9px; }
+.latest-post-card { display: grid; grid-template-columns: minmax(130px, 220px) minmax(0, 1fr); overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.latest-post-card:not(:has(.latest-post-cover)) { grid-template-columns: 1fr; }
+.latest-post-cover { width: 100%; height: 100%; min-height: 148px; max-height: 210px; object-fit: cover; }
+.latest-post-copy { align-self: center; padding: 15px 18px; }
+.latest-post-copy .eyebrow { margin-bottom: 6px; }
+.latest-post-copy h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.latest-post-copy > p:not(.eyebrow) { display: -webkit-box; overflow: hidden; margin: 7px 0; color: var(--text-muted); font-size: 11px; line-height: 1.6; line-clamp: 3; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.latest-post-copy .text-link { display: inline-block; margin-top: 3px; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 12px; }
 .section-heading .eyebrow { margin-bottom: 5px; }
 .section-heading h2 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: 0; }
@@ -172,8 +182,10 @@ body.sidebar-collapsed .sidebar-rule { margin-right: 3px; margin-left: 3px; }
 .note-mark { display: grid; width: 25px; height: 25px; flex: 0 0 25px; place-items: center; border-radius: 50%; background: var(--surface-blue); color: var(--blue-strong); font-size: 8px; font-weight: 700; }
 .bottom-note p { flex: 1; margin: 0; color: var(--text-muted); font-size: 10px; }
 .bottom-note p strong { color: var(--text); font-weight: 600; }
-.bottom-note > a { color: var(--blue-strong); font-size: 10px; font-weight: 600; white-space: nowrap; }
-.bottom-note > a span { margin-left: 4px; }
+.bottom-note-actions { display: grid; justify-items: end; gap: 5px; flex: 0 0 auto; }
+.bottom-note-actions a { color: var(--blue-strong); font-size: 10px; font-weight: 600; white-space: nowrap; }
+.bottom-note-actions a + a { color: var(--text-muted); }
+.bottom-note-actions a span { margin-left: 4px; }
 .page-intro { margin: 8px 0 22px; }
 .page-intro h1 { margin: 0; font-family: var(--font-display); font-size: 33px; font-weight: 400; letter-spacing: 0; }
 .page-intro > p:last-child { margin: 8px 0 0; color: var(--text-muted); font-size: 12px; line-height: 1.6; }
@@ -348,6 +360,12 @@ body.sidebar-collapsed .sidebar-rule { margin-right: 3px; margin-left: 3px; }
     .chip-blue { right: 13%; bottom: 23%; }
     .table-mark { right: 19%; top: 11%; }
     .section-block { margin-top: 22px; }
+    .latest-post-block { margin-top: 19px; }
+    .latest-post-card { grid-template-columns: minmax(86px, 30%) minmax(0, 1fr); }
+    .latest-post-cover { min-height: 120px; max-height: 160px; }
+    .latest-post-copy { padding: 11px; }
+    .latest-post-copy h3 { font-size: 13px; }
+    .latest-post-copy > p:not(.eyebrow) { font-size: 10px; line-clamp: 3; -webkit-line-clamp: 3; }
     .section-heading h2 { font-size: 14px; }
     .section-note { max-width: 110px; font-size: 9px; text-align: right; }
     .overview-grid { grid-template-columns: 1fr; }
@@ -355,7 +373,7 @@ body.sidebar-collapsed .sidebar-rule { margin-right: 3px; margin-left: 3px; }
     .overview-item + .overview-item { border-top: 1px solid var(--line); border-left: 0; }
     .bottom-note { gap: 8px; margin-top: 13px; padding: 8px 3px; }
     .bottom-note p { font-size: 9px; line-height: 1.5; }
-    .bottom-note > a { font-size: 9px; }
+    .bottom-note-actions a { font-size: 9px; }
     .page-intro { margin: 5px 0 17px; }
     .page-intro h1 { font-size: 29px; }
     .page-intro > p:last-child { font-size: 11px; }

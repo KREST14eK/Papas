@@ -42,7 +42,11 @@ const pages = {
                     </a>
                 </div>
             </section>
-            <section class="bottom-note"><span class="note-mark">MS</span><p><strong>Покер — это решения.</strong> Мы поможем принимать их увереннее.</p><a href="register.html">Присоединиться <span aria-hidden="true">→</span></a></section>
+            <section class="latest-post-block" aria-labelledby="latest-post-title" hidden>
+                <div class="section-heading"><div><p class="eyebrow">Свежая публикация</p><h2 id="latest-post-title">Последний пост</h2></div><a class="text-link" href="posts.html">Все посты <span aria-hidden="true">→</span></a></div>
+                <article class="latest-post-card"></article>
+            </section>
+            <section class="bottom-note"><span class="note-mark">MS</span><p><strong>Покер — это решения.</strong> Мы поможем принимать их увереннее.</p><div class="bottom-note-actions"><a href="register.html">Присоединиться <span aria-hidden="true">→</span></a><a href="login.html">Войти</a></div></section>
         `
     },
     courses: {
@@ -285,6 +289,15 @@ function renderStreams(entries) {
 async function loadPublicContent() {
     if (!supabaseClient) {
         document.querySelectorAll('.content-loading').forEach(el => { el.innerHTML = '<p>Не удалось подключиться к Supabase. Проверьте config.js и загрузку SDK.</p>'; });
+        return;
+    }
+    if (currentPage === 'home') {
+        const { data: latestPost, error } = await supabaseClient.from('ms_poker_content').select('id,title,summary,body,media_url,created_at').eq('kind', 'post').eq('status', 'published').order('created_at', { ascending: false }).limit(1).maybeSingle();
+        if (!error && latestPost) {
+            const section = document.querySelector('.latest-post-block');
+            section.querySelector('.latest-post-card').innerHTML = `${latestPost.media_url ? `<img class="latest-post-cover" src="${escapeHTML(latestPost.media_url)}" alt="Обложка: ${escapeHTML(latestPost.title)}">` : ''}<div class="latest-post-copy"><p class="eyebrow">${formatDate(latestPost.created_at)}</p><h3>${escapeHTML(latestPost.title)}</h3>${latestPost.summary ? `<p>${escapeHTML(latestPost.summary)}</p>` : latestPost.body ? `<p>${escapeHTML(latestPost.body)}</p>` : ''}<a class="text-link" href="posts.html">Читать в разделе постов <span aria-hidden="true">→</span></a></div>`;
+            section.hidden = false;
+        }
         return;
     }
     if (currentPage === 'courses' || currentPage === 'posts') {
